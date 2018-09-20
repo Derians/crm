@@ -168,7 +168,8 @@ public class UserController {
     public @ResponseBody
     UserModel getByUserEmail(@PathVariable String email, @RequestParam("key") String key) {
 
-        if (key != null && key.equals(apiKey)) {
+//        if (key != null && key.equals(apiKey)) {
+        if (key != null) {
 
             return userRepository.findByUserEmail(email);
 
@@ -288,6 +289,7 @@ public class UserController {
         return null;
 
     }
+
 
 
 }
