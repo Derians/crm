@@ -46,5 +46,4 @@ public class ClientModel {
 
     @JsonProperty("client_address")
     private String clientAddress;
-
 }

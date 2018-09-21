@@ -13,5 +13,5 @@ public interface ObjectRepository extends CrudRepository<ObjectModel, Long> {
      * @return the object having the passed name or null if no object is found.
      */
 
-    public ObjectModel findByObjectName(String name);
+    ObjectModel findByObjectName(String name);
 }

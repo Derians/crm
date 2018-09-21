@@ -59,7 +59,4 @@ public class DeliveryModel {
 
     @JsonProperty("delivery_weight")
     private String deliveryWeight;
-
-
-
 }

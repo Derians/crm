@@ -12,5 +12,5 @@ public interface ClientRepository extends CrudRepository<ClientModel, Long> {
      * @param name the client name.
      * @return the client having the passed name or null if no client is found.
      */
-    public ClientModel findByClientName(String name);
+    ClientModel findByClientName(String name);
 }

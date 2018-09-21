@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path="/api/client")
+@RequestMapping(path = "/api/client")
 public class ClientController {
 
     private final ClientRepository clientRepository;
@@ -21,55 +21,46 @@ public class ClientController {
         this.clientRepository = clientRepository;
     }
 
-    @GetMapping(path="/add")
+    @GetMapping(path = "/add")
     public @ResponseBody
-    ClientModel addNewClient (@RequestParam(value = "clientName") String clientName
-            , @RequestParam(value = "managerId") Long managerId
-            , @RequestParam(value = "clientInformation", required=false) String clientInformation
-            , @RequestParam(value = "clientManager", required=false) String clientManager
-            , @RequestParam(value = "clientEmail", required=false) String clientEmail
-            , @RequestParam(value = "clientMobile", required=false) String clientMobile
-            , @RequestParam(value = "clientPhone", required=false) String clientPhone
-            , @RequestParam(value = "clientAddress", required=false) String clientAddress
-            , @RequestParam("key") String key
-    ) {
+    ClientModel addNewClient(@RequestParam(value = "clientName") String clientName,
+                             @RequestParam(value = "managerId") Long managerId,
+                             @RequestParam(value = "clientInformation", required = false) String clientInformation,
+                             @RequestParam(value = "clientManager", required = false) String clientManager,
+                             @RequestParam(value = "clientEmail", required = false) String clientEmail,
+                             @RequestParam(value = "clientMobile", required = false) String clientMobile,
+                             @RequestParam(value = "clientPhone", required = false) String clientPhone,
+                             @RequestParam(value = "clientAddress", required = false) String clientAddress,
+                             @RequestParam("key") String key) {
 
         if (key != null && key.equals(apiKey)) {
 
-        ClientModel clientModel = new ClientModel();
-        clientModel.setClientName(clientName);
-        clientModel.setManagerId(managerId);
-        clientModel.setClientInformation(clientInformation);
-        clientModel.setClientManager(clientManager);
-        clientModel.setClientEmail(clientEmail);
-        clientModel.setClientMobile(clientMobile);
-        clientModel.setClientPhone(clientPhone);
-        clientModel.setClientAddress(clientAddress);
-        clientRepository.save(clientModel);
-        return clientModel;
-
+            ClientModel clientModel = new ClientModel();
+            clientModel.setClientName(clientName);
+            clientModel.setManagerId(managerId);
+            clientModel.setClientInformation(clientInformation);
+            clientModel.setClientManager(clientManager);
+            clientModel.setClientEmail(clientEmail);
+            clientModel.setClientMobile(clientMobile);
+            clientModel.setClientPhone(clientPhone);
+            clientModel.setClientAddress(clientAddress);
+            clientRepository.save(clientModel);
+            return clientModel;
         }
-
         return null;
-
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path = "/all")
     public @ResponseBody
     Iterable<ClientModel> getAllClients(@RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return clientRepository.findAll();
-
-        }
-
         return null;
-
     }
 
     @GetMapping("/del/{id}/")
     public @ResponseBody
-    SuccessModel delById (@PathVariable Long id, @RequestParam("key") String key) {
+    SuccessModel delById(@PathVariable Long id, @RequestParam("key") String key) {
 
         if (key != null && key.equals(apiKey)) {
 
@@ -88,38 +79,24 @@ public class ClientController {
                 successModel.setSuccess(false);
                 successModel.setMessage("ClientModel with id=" + id + " not found");
                 return successModel;
-
             }
-
         }
-
         return null;
-
     }
 
     @GetMapping("/find/id/{id}/")
     public @ResponseBody
-    ClientModel getById (@PathVariable Long id, @RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+    ClientModel getById(@PathVariable Long id, @RequestParam("key") String key) {
+        if (key != null && key.equals(apiKey))
             return clientRepository.findById(id).get();
-
-        }
-
         return null;
-
     }
 
     @GetMapping("/find/name/{name}/")
     public @ResponseBody
-    ClientModel getByClientName (@PathVariable String name, @RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+    ClientModel getByClientName(@PathVariable String name, @RequestParam("key") String key) {
+        if (key != null && key.equals(apiKey))
             return clientRepository.findByClientName(name);
-
-        }
-
         return null;
-
     }
 }

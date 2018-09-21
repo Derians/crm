@@ -3,6 +3,10 @@ package com.petrokomplekt.core.Users;
 
 import com.petrokomplekt.core.Users.madel.UserModel;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -19,7 +23,7 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @param email the user personal email.
      * @return the user having the passed personal email or null if no user is found.
      */
-    public UserModel findByUserPersonalEmail(String email);
+    UserModel findByUserPersonalEmail(String email);
 
     /**
      * Method findByUserEmail
@@ -27,7 +31,7 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @param email the user email.
      * @return the user having the passed email or null if no user is found.
      */
-    public UserModel findByUserEmail(String email);
+    UserModel findByUserEmail(String email);
 
     /**
      * Method findByUserGender
@@ -35,7 +39,7 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @param gender the user gender.
      * @return the list of users having the passed gender or null if no user is found.
      */
-    public List<UserModel> findByUserGender(String gender);
+    List<UserModel> findByUserGender(String gender);
 
     /**
      * Method findByUserFirstName
@@ -44,7 +48,7 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @return the list of users having the passed firstName or null if no user is found.
      */
 
-    public List<UserModel> findByUserFirstName(String firstName);
+    List<UserModel> findByUserFirstName(String firstName);
 
     /**
      * Method findByUserLastName
@@ -53,7 +57,7 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @return the list of users having the passed lastName or null if no user is found.
      */
 
-    public List<UserModel> findByUserLastName(String lastName);
+    List<UserModel> findByUserLastName(String lastName);
 
     /**
      * Method findByUserPosition
@@ -62,7 +66,7 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @return the list of users having the passed userPosition or null if no user is found.
      */
 
-    public List<UserModel> findByUserPosition(String userPosition);
+    List<UserModel> findByUserPosition(String userPosition);
 
     /**
      * Method findByUserPcName
@@ -70,7 +74,7 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @param userPcName the user user pc name.
      * @return the user having the passed email or null if no user is found.
      */
-    public UserModel findByUserPcName(String userPcName);
+    UserModel findByUserPcName(String userPcName);
 
     /**
      * Method findByUserIpAddress
@@ -78,7 +82,7 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @param userIpAddress the user user ip address.
      * @return the user having the passed userIpAddress or null if no user is found.
      */
-    public UserModel findByUserIpAddress(String userIpAddress);
+    UserModel findByUserIpAddress(String userIpAddress);
 
     /**
      * Method findByUserLevel
@@ -87,7 +91,7 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @return the list of users having the passed userLevel or null if no user is found.
      */
 
-    public List<UserModel> findByUserLevel(String userLevel);
+    List<UserModel> findByUserLevel(String userLevel);
 
     /**
      * Method findByUserDepartment
@@ -96,7 +100,7 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @return the list of users having the passed userDepartment or null if no user is found.
      */
 
-    public List<UserModel> findByUserDepartment(String userDepartment);
+    List<UserModel> findByUserDepartment(String userDepartment);
 
     /**
      * Method findByUserExternalId
@@ -104,6 +108,6 @@ public interface UserRepository extends CrudRepository<UserModel, Long> {
      * @param userExternalId the user user external id.
      * @return the user having the passed userExternalId or null if no user is found.
      */
-    public UserModel findByUserExternalId(String userExternalId);
+    UserModel findByUserExternalId(String userExternalId);
 
 }

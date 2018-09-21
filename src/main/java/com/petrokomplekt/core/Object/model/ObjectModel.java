@@ -52,6 +52,4 @@ public class ObjectModel {
 
     @JsonProperty("object_information")
     private String objectInformation;
-
-
 }

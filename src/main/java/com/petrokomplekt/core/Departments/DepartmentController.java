@@ -21,15 +21,13 @@ public class DepartmentController {
         this.departmentRepository = departmentRepository;
     }
 
-
     @GetMapping(path="/add")
     public @ResponseBody
-    DepartmentModel addNewDepartment (@RequestParam(value = "departmentName", required=false) String departmentName
-            , @RequestParam(value = "departmentEmail", required=false) String departmentEmail
-            , @RequestParam(value = "departmentHead", defaultValue = "0") int departmentHead
-            , @RequestParam(value = "departmentExternalId", defaultValue = "0") int departmentExternalId
-            , @RequestParam("key") String key
-            ) {
+    DepartmentModel addNewDepartment (@RequestParam(value = "departmentName", required=false) String departmentName,
+                                      @RequestParam(value = "departmentEmail", required=false) String departmentEmail,
+                                      @RequestParam(value = "departmentHead", defaultValue = "0") int departmentHead,
+                                      @RequestParam(value = "departmentExternalId", defaultValue = "0") int departmentExternalId,
+                                      @RequestParam("key") String key) {
 
         if (key != null && key.equals(apiKey)) {
 
@@ -40,9 +38,7 @@ public class DepartmentController {
             departmentModel.setDepartmentExternalId(departmentExternalId);
             departmentRepository.save(departmentModel);
             return departmentModel;
-
         }
-
         return null;
     }
 
@@ -67,52 +63,33 @@ public class DepartmentController {
                 successModel.setSuccess(false);
                 successModel.setMessage("Department with id=" + id + " not found");
                 return successModel;
-
             }
-
         }
-
         return null;
-
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<DepartmentModel> getAllDepartments(@RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+    public @ResponseBody
+    Iterable<DepartmentModel> getAllDepartments(@RequestParam("key") String key) {
+        if (key != null && key.equals(apiKey))
             return departmentRepository.findAll();
-
-        }
-
         return null;
-
     }
-
 
     @GetMapping("/find/id/{id}/")
     public @ResponseBody
     DepartmentModel getById (@PathVariable Long id, @RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return departmentRepository.findById(id).get();
-
-        }
-
         return null;
-
     }
 
     @GetMapping("/find/name/{name}/")
     public @ResponseBody
     DepartmentModel getByDepartmentName (@PathVariable String name, @RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return departmentRepository.findByDepartmentName(name);
-
-        }
-
         return null;
-
     }
 
 }

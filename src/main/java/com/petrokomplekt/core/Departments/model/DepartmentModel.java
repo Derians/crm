@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,5 +34,4 @@ public class DepartmentModel {
 
     @JsonProperty("department_external_id")
     private int departmentExternalId;
-
 }

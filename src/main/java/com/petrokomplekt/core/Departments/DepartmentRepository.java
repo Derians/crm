@@ -12,5 +12,5 @@ public interface DepartmentRepository extends CrudRepository<DepartmentModel, Lo
      * @param name the department name.
      * @return the department having the passed name or null if no department is found.
      */
-    public DepartmentModel findByDepartmentName(String name);
+    DepartmentModel findByDepartmentName(String name);
 }

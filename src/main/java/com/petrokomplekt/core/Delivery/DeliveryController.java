@@ -51,22 +51,15 @@ public class DeliveryController {
             deliveryModel.setDeliveryDate(deliveryDate);
             deliveryModel.setDeliveryWeight(deliveryWeight);
             deliveryRepository.save(deliveryModel);
-
             return deliveryModel;
         }
-
         return null;
     }
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<DeliveryModel> getAllDepartments(@RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return deliveryRepository.findAll();
-
-        }
-
         return null;
-
     }
 }

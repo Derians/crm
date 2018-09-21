@@ -50,7 +50,7 @@ public class UserController {
 
         if (key != null && key.equals(apiKey)) {
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");//задаю формат даты
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date = null;
             try {
                 date = formatter.parse(birthDay);
@@ -81,22 +81,15 @@ public class UserController {
             userRepository.save(userModel);
 
             return userModel;
-
         }
-
         return null;
     }
 
     @GetMapping(path="/all")
     public @ResponseBody
     Iterable<UserModel> getAllUsers(@RequestParam("key") String key) {
-
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findAll();
-
-        }
-
         return null;
     }
 
@@ -121,11 +114,8 @@ public class UserController {
                 successModel.setSuccess(false);
                 successModel.setMessage("User with id=" + id + " not found");
                 return successModel;
-
             }
-
         }
-
         return null;
     }
 
@@ -133,163 +123,97 @@ public class UserController {
     @GetMapping("/find/id/{id}")
     public @ResponseBody
     UserModel getById (@PathVariable Long id, @RequestParam("key") String key) {
-
-        if (key != null && key.equals(apiKey)) {
-
-            if (userRepository.existsById(id)) {
-
+        if (key != null && key.equals(apiKey))
+            if (userRepository.existsById(id))
                 return userRepository.findById(id).get();
-
-            } else {
-
-                return null;
-
-            }
-
-        }
-
         return null;
     }
 
     @GetMapping("/find/personalmail/{email}")
     public @ResponseBody
     UserModel getByUserPersonalEmail (@PathVariable String email, @RequestParam("key") String key) {
-
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findByUserPersonalEmail(email);
-
-        }
-
         return null;
     }
 
     @GetMapping("/find/email/{email}")
     public @ResponseBody
     UserModel getByUserEmail(@PathVariable String email, @RequestParam("key") String key) {
-
-//        if (key != null && key.equals(apiKey)) {
-        if (key != null) {
-
+        if (key != null)
             return userRepository.findByUserEmail(email);
-
-        }
-
         return null;
     }
 
     @GetMapping("/find/gender/{gender}")
     public @ResponseBody
     List<UserModel> getByUserGender(@PathVariable String gender, @RequestParam("key") String key) {
-
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findByUserGender(gender);
-
-        }
-
         return null;
     }
 
     @GetMapping("/find/firstname/{firstname}")
     public @ResponseBody
     List<UserModel> getByUserFirstName(@PathVariable String firstname, @RequestParam("key") String key) {
-
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findByUserFirstName(firstname);
-
-        }
-
         return null;
-
     }
 
     @GetMapping("/find/lastname/{lastname}")
     public @ResponseBody
     List<UserModel> getByUserLastName(@PathVariable String lastname, @RequestParam("key") String key) {
-
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findByUserLastName(lastname);
-        }
-
         return null;
-
     }
 
     @GetMapping("/find/position/{position}")
     public @ResponseBody
     List<UserModel> getByUserPosition(@PathVariable String position, @RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findByUserPosition(position);
-        }
-
         return null;
-
     }
 
     @GetMapping("/find/pcname/{pcname}")
     public @ResponseBody
     UserModel getByUserPcName(@PathVariable String pcname, @RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findByUserPcName(pcname);
-        }
-
         return null;
-
     }
 
     @GetMapping("/find/ip/{ip}")
     public @ResponseBody
     UserModel getByUserIpAddress(@PathVariable String ip, @RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findByUserIpAddress(ip);
-        }
-
         return null;
-
     }
 
     @GetMapping("/find/level/{level}")
     public @ResponseBody
     List<UserModel> getByUserLevel(@PathVariable String level, @RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findByUserLevel(level);
-        }
-
         return null;
-
     }
 
     @GetMapping("/find/department/{department}")
     public @ResponseBody
     List<UserModel> getByUserDepartment(@PathVariable String department, @RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findByUserDepartment(department);
-        }
-
         return null;
-
     }
 
     @GetMapping("/find/externalid/{externalid}")
     public @ResponseBody
     UserModel getByUserExternalId(@PathVariable String externalid, @RequestParam("key") String key) {
-        if (key != null && key.equals(apiKey)) {
-
+        if (key != null && key.equals(apiKey))
             return userRepository.findByUserExternalId(externalid);
-        }
-
         return null;
-
     }
-
-
-
 }
